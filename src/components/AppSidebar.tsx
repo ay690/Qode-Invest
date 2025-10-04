@@ -37,38 +37,57 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r">
       <SidebarContent>
+        {/* Logo + Branding */}
         <div className="p-4">
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
-              <div className="h-6 w-6 rounded-full bg-primary" />
+              <h1
+                className="font-extrabold text-2xl"
+                style={{ fontFamily: "initial" }}
+              >
+                C,
+              </h1>
               {open && (
                 <div className="flex flex-col">
                   <span className="text-sm font-semibold">capitalmind</span>
-                  <span className="text-xs text-emerald-600">premium</span>
+                  <span className="text-xs text-emerald-600 font-bold">
+                    premium
+                  </span>
                 </div>
               )}
             </div>
           </div>
         </div>
 
+        {/* Sidebar Menu */}
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {items?.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  {item.url === "#" ? (
+                    <SidebarMenuButton className="flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+                      <item.icon className="h-4 w-4" />
+                      {open && <span>{item.title}</span>}
+                    </SidebarMenuButton>
+                  ) : (
                     <NavLink
                       to={item.url}
+                      end
                       className={({ isActive }) =>
-                        isActive && item.url !== "#"
-                          ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                          : ""
+                        `flex items-center gap-2 px-2 py-2 rounded-md transition-colors 
+                         hover:bg-sidebar-accent hover:text-sidebar-accent-foreground 
+                         ${
+                           isActive
+                             ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                             : ""
+                         }`
                       }
                     >
                       <item.icon className="h-4 w-4" />
-                      <span>{item.title}</span>
+                      {open && <span>{item.title}</span>}
                     </NavLink>
-                  </SidebarMenuButton>
+                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
@@ -76,6 +95,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
+      {/* Sidebar Footer */}
       <SidebarFooter className="border-t p-3 cursor-pointer hover:bg-gray-500/5">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2">
