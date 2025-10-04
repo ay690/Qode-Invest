@@ -76,7 +76,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="border-t p-3">
+      <SidebarFooter className="border-t p-3 cursor-pointer hover:bg-gray-500/5">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2">
             <div className="flex items-center justify-center h-8 w-8 rounded-full bg-green-500 text-white font-bold">
