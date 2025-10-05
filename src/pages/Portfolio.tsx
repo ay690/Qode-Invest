@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { type RootState } from "@/store";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Download, RotateCcw } from "lucide-react";
 import {
   Line,
@@ -61,18 +61,17 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-6 max-w-7xl">
-        {/* Trailing Returns Section */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl font-bold">Trailing Returns</h2>
-            <button className="p-2 hover:bg-accent rounded-md transition-colors cursor-pointer">
-              <Download className="h-5 w-5 text-emerald-600" />
-            </button>
-          </div>
-
-          <Card>
-            <CardContent className="p-0">
-              <div className="overflow-x-auto">
+        <Card>
+          <CardContent className="space-y-8">
+            {/* Trailing Returns Section */}
+            <div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-semibold mb-4">Trailing Returns</h3>
+                <button className="p-2 hover:bg-accent rounded-md transition-colors cursor-pointer">
+                  <Download className="h-5 w-5 text-emerald-600" />
+                </button>
+              </div>
+              <div className="overflow-x-auto border rounded-lg">
                 <table className="w-full">
                   <thead className="border-b">
                     <tr className="text-sm text-muted-foreground">
@@ -131,121 +130,111 @@ const Portfolio = () => {
               <div className="p-4 text-xs text-muted-foreground border-t">
                 Note: Returns above 1 year are annualised.
               </div>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
 
-        {/* Equity Curve Section */}
-        <div>
-          <Card>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="text-xl mb-2">Equity curve</CardTitle>
-                  <div className="flex text-sm text-muted-foreground">
-                    Live since {equityCurve[0]?.date || "2015-05-25"} •{" "}
-                    <button
-                      onClick={handleReset}
-                      className="flex items-center align-center gap-1 text-emerald-600 hover:underline cursor-pointer"
-                    >
-                      <RotateCcw className="h-2 w-2 ml-1 mt-1.5" />
-                      <span>Reset</span>
-                    </button>
-                  </div>
+            {/* Equity Curve Section */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold">Equity curve</h3>
+                <div className="flex text-sm text-muted-foreground">
+                  Live since {equityCurve[0]?.date || "2015-05-25"} •{" "}
+                  <button
+                    onClick={handleReset}
+                    className="flex items-center align-center gap-1 text-emerald-600 hover:underline cursor-pointer"
+                  >
+                    <RotateCcw className="h-2 w-2 ml-1 mt-1.5" />
+                    <span>Reset</span>
+                  </button>
                 </div>
-                <div className="flex gap-4 items-center">
-                  <div className="flex flex-col">
-                    <label className="text-xs text-muted-foreground mb-1">
-                      From date
-                    </label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className={cn(
-                            "w-[200px] justify-start text-left font-normal text-sm h-9 cursor-pointer",
-                            !fromDate && "text-muted-foreground"
-                          )}
-                        >
-                          {fromDate ? (
-                            format(fromDate, "yyyy-mm-dd")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={fromDate}
-                          onSelect={setFromDate}
-                          disabled={(date) => {
-                            const minDate = new Date(
-                              equityCurve[0]?.date || "2015-05-25"
-                            );
-                            const maxDate =
-                              toDate ||
-                              new Date(
-                                equityCurve[equityCurve.length - 1]?.date ||
-                                  "2024-04-24"
-                              );
-                            return date < minDate || date > maxDate;
-                          }}
-                          initialFocus
-                          className={cn(
-                            "p-3 pointer-events-auto cursor-pointer"
-                          )}
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                  <div className="flex flex-col">
-                    <label className="text-xs text-muted-foreground mb-1">
-                      To date
-                    </label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className={cn(
-                            "w-[200px] justify-start text-left font-normal text-sm h-9 cursor-pointer",
-                            !toDate && "text-muted-foreground"
-                          )}
-                        >
-                          {toDate ? (
-                            format(toDate, "yyyy-MM-dd")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={toDate}
-                          onSelect={setToDate}
-                          disabled={(date) => {
-                            const minDate =
-                              fromDate ||
-                              new Date(equityCurve[0]?.date || "2015-05-25");
-                            const maxDate = new Date(
+              </div>
+
+              <div className="flex gap-4 items-center mb-6">
+                <div className="flex flex-col">
+                  <label className="text-xs text-muted-foreground mb-1">
+                    From date
+                  </label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-[200px] justify-start text-left font-normal text-sm h-9 cursor-pointer",
+                          !fromDate && "text-muted-foreground"
+                        )}
+                      >
+                        {fromDate ? (
+                          format(fromDate, "yyyy-mm-dd")
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={fromDate}
+                        onSelect={setFromDate}
+                        disabled={(date) => {
+                          const minDate = new Date(
+                            equityCurve[0]?.date || "2015-05-25"
+                          );
+                          const maxDate =
+                            toDate ||
+                            new Date(
                               equityCurve[equityCurve.length - 1]?.date ||
                                 "2024-04-24"
                             );
-                            return date < minDate || date > maxDate;
-                          }}
-                          initialFocus
-                          className={cn(
-                            "p-3 cursor-pointer pointer-events-auto"
-                          )}
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
+                          return date < minDate || date > maxDate;
+                        }}
+                        initialFocus
+                        className={cn("p-3 pointer-events-auto cursor-pointer")}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-xs text-muted-foreground mb-1">
+                    To date
+                  </label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-[200px] justify-start text-left font-normal text-sm h-9 cursor-pointer",
+                          !toDate && "text-muted-foreground"
+                        )}
+                      >
+                        {toDate ? (
+                          format(toDate, "yyyy-MM-dd")
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={toDate}
+                        onSelect={setToDate}
+                        disabled={(date) => {
+                          const minDate =
+                            fromDate ||
+                            new Date(equityCurve[0]?.date || "2015-05-25");
+                          const maxDate = new Date(
+                            equityCurve[equityCurve.length - 1]?.date ||
+                              "2024-04-24"
+                          );
+                          return date < minDate || date > maxDate;
+                        }}
+                        initialFocus
+                        className={cn("p-3 cursor-pointer pointer-events-auto")}
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
               </div>
-            </CardHeader>
-            <CardContent>
+
               {/* Equity Curve Chart */}
               <ResponsiveContainer width="100%" height={400}>
                 <ComposedChart data={filteredEquityCurve}>
@@ -324,9 +313,9 @@ const Portfolio = () => {
                   />
                 </ComposedChart>
               </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
