@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { type RootState } from "@/store";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Download, CalendarIcon, RotateCcw } from "lucide-react";
+import { Download, RotateCcw } from "lucide-react";
 import {
   Line,
   Area,
@@ -167,7 +167,6 @@ const Portfolio = () => {
                             !fromDate && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
                           {fromDate ? (
                             format(fromDate, "yyyy-mm-dd")
                           ) : (
@@ -213,7 +212,6 @@ const Portfolio = () => {
                             !toDate && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
                           {toDate ? (
                             format(toDate, "yyyy-MM-dd")
                           ) : (
