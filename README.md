@@ -1,73 +1,100 @@
-# React + TypeScript + Vite
+# Qode Invest - Investment Portfolio Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Currently, two official plugins are available:
+Qode Invest is a modern, responsive web application built with React, TypeScript, and Vite, designed to help users track and manage their investment portfolios with ease.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+- 📊 Interactive portfolio visualization
+- 📈 Investment tracking
+- 🛠 Built with modern React (v19+) and TypeScript
+- ⚡ Blazing fast performance with Vite
+- 📱 Fully responsive design
+- 🔄 State management with Redux Toolkit
+- 🎨 Styled with Tailwind CSS
+- 🚀 React Router for seamless navigation
+- 📅 Date utilities with date-fns
+- 📊 Data visualization with Recharts
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## 🛠 Tech Stack
 
-## Expanding the ESLint configuration
+- **Frontend Framework**: React 19+
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS with CSS Modules
+- **State Management**: Redux Toolkit
+- **Data Fetching**: React Query
+- **Routing**: React Router v6
+- **UI Components**: Radix UI Primitives
+- **Icons**: Lucide React
+- **Animations**: Framer Motion
+- **Form Handling**: React Hook Form
+- **Date Handling**: date-fns
+- **Data Visualization**: Recharts
+- **Notifications**: Sonner
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js (v18 or later)
+- npm (v9 or later) or yarn
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/qode-invest.git
+   cd qode-invest
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
+
+## 🏗 Project Structure
+
+```
+src/
+├── assets/           # Static assets
+├── components/       # Reusable UI components
+├── data/             # Mock data and constants
+├── hooks/            # Custom React hooks
+├── lib/              # Utility functions and helpers
+├── pages/            # Page components
+├── store/            # Redux store and slices
+├── types/            # TypeScript type definitions
+├── App.tsx           # Main application component
+└── main.tsx          # Application entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📦 Available Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `npm run dev` - Start the development server
+- `npm run build` - Build the application for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🎨 Theming
+
+The application supports both light and dark themes, automatically adapting to the user's system preferences. You can also manually toggle between themes.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
