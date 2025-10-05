@@ -62,6 +62,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-6 max-w-7xl">
+        <h1 className="text-4xl font-bold mb-8">Portfolios</h1>
         <Card>
           {/* Trailing Returns Header */}
           <div className="p-6 border-b">
