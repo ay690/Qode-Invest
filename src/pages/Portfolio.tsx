@@ -23,6 +23,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const Portfolio = () => {
   const { trailingReturns, equityCurve } = useSelector(
@@ -62,6 +63,7 @@ const Portfolio = () => {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-6 max-w-7xl">
         <Card>
+          {/* Trailing Returns Header */}
           <div className="p-6 border-b">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-2xl font-bold">Trailing Returns</h2>
@@ -71,254 +73,279 @@ const Portfolio = () => {
             </div>
           </div>
 
-          {/* --- Trailing Returns Table --- */}
-          <CardContent className="p-0">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="border-b">
-                  <tr className="text-sm text-muted-foreground">
-                    <th className="text-left p-4 font-medium">NAME</th>
-                    <th className="text-right p-4 font-medium">YTD</th>
-                    <th className="text-right p-4 font-medium">1D</th>
-                    <th className="text-right p-4 font-medium">1W</th>
-                    <th className="text-right p-4 font-medium">1M</th>
-                    <th className="text-right p-4 font-medium">3M</th>
-                    <th className="text-right p-4 font-medium">6M</th>
-                    <th className="text-right p-4 font-medium">1Y</th>
-                    <th className="text-right p-4 font-medium">3Y</th>
-                    <th className="text-right p-4 font-medium">SI</th>
-                    <th className="text-right p-4 font-medium">DD</th>
-                    <th className="text-right p-4 font-medium">MAXDD</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {trailingReturns.map((row, index) => (
-                    <tr key={index} className="border-b last:border-0">
-                      <td className="p-4 font-medium">{row.name}</td>
-                      <td
-                        className={`p-4 text-right ${
-                          parseFloat(row.ytd) < 0 ? "text-red-600" : ""
-                        }`}
-                      >
-                        {row.ytd}
-                      </td>
-                      <td className="p-4 text-right">{row.oneD}</td>
-                      <td className="p-4 text-right">{row.oneW}</td>
-                      <td className="p-4 text-right">{row.oneM}</td>
-                      <td className="p-4 text-right">{row.threeM}</td>
-                      <td className="p-4 text-right">{row.sixM}</td>
-                      <td className="p-4 text-right">{row.oneY}</td>
-                      <td className="p-4 text-right">{row.threeY}</td>
-                      <td className="p-4 text-right">{row.si}</td>
-                      <td
-                        className={`p-4 text-right ${
-                          parseFloat(row.dd) < 0 ? "text-red-600" : ""
-                        }`}
-                      >
-                        {row.dd}
-                      </td>
-                      <td
-                        className={`p-4 text-right ${
-                          parseFloat(row.maxdd) < 0 ? "text-red-600" : ""
-                        }`}
-                      >
-                        {row.maxdd}
-                      </td>
+          {/* --- Trailing Returns Table (from left) --- */}
+          <motion.div
+            initial={{ x: -40, opacity: 0, scale: 0.98 }}
+            animate={{ x: 0, opacity: 1, scale: 1 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+          >
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="border-b">
+                    <tr className="text-sm text-muted-foreground">
+                      <th className="text-left p-4 font-medium">NAME</th>
+                      <th className="text-right p-4 font-medium">YTD</th>
+                      <th className="text-right p-4 font-medium">1D</th>
+                      <th className="text-right p-4 font-medium">1W</th>
+                      <th className="text-right p-4 font-medium">1M</th>
+                      <th className="text-right p-4 font-medium">3M</th>
+                      <th className="text-right p-4 font-medium">6M</th>
+                      <th className="text-right p-4 font-medium">1Y</th>
+                      <th className="text-right p-4 font-medium">3Y</th>
+                      <th className="text-right p-4 font-medium">SI</th>
+                      <th className="text-right p-4 font-medium">DD</th>
+                      <th className="text-right p-4 font-medium">MAXDD</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="p-4 text-xs text-muted-foreground border-t">
-              Note: Returns above 1 year are annualised.
-            </div>
-          </CardContent>
+                  </thead>
+                  <tbody>
+                    {trailingReturns.map((row, index) => (
+                      <tr key={index} className="border-b last:border-0">
+                        <td className="p-4 font-medium">{row.name}</td>
+                        <td
+                          className={`p-4 text-right ${
+                            parseFloat(row.ytd) < 0 ? "text-red-600" : ""
+                          }`}
+                        >
+                          {row.ytd}
+                        </td>
+                        <td className="p-4 text-right">{row.oneD}</td>
+                        <td className="p-4 text-right">{row.oneW}</td>
+                        <td className="p-4 text-right">{row.oneM}</td>
+                        <td className="p-4 text-right">{row.threeM}</td>
+                        <td className="p-4 text-right">{row.sixM}</td>
+                        <td className="p-4 text-right">{row.oneY}</td>
+                        <td className="p-4 text-right">{row.threeY}</td>
+                        <td className="p-4 text-right">{row.si}</td>
+                        <td
+                          className={`p-4 text-right ${
+                            parseFloat(row.dd) < 0 ? "text-red-600" : ""
+                          }`}
+                        >
+                          {row.dd}
+                        </td>
+                        <td
+                          className={`p-4 text-right ${
+                            parseFloat(row.maxdd) < 0 ? "text-red-600" : ""
+                          }`}
+                        >
+                          {row.maxdd}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="p-4 text-xs text-muted-foreground border-t">
+                Note: Returns above 1 year are annualised.
+              </div>
+            </CardContent>
+          </motion.div>
 
           {/* Divider between sections */}
           <div className="border-t" />
 
-          {/* --- Equity Curve Header (kept as original layout) --- */}
-          <div className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle className="text-xl mb-2">Equity curve</CardTitle>
-                <div className="flex text-sm text-muted-foreground">
-                  Live since {equityCurve[0]?.date || "2015-05-25"} •{" "}
-                  <button
-                    onClick={handleReset}
-                    className="flex items-center align-center gap-1 text-emerald-600 hover:underline cursor-pointer"
-                  >
-                    <RotateCcw className="h-2 w-2 ml-1 mt-1.5" />
-                    <span>Reset</span>
-                  </button>
+          {/* --- Equity Curve Header (from right) --- */}
+          <motion.div
+            initial={{ x: 40, opacity: 0, scale: 0.98 }}
+            animate={{ x: 0, opacity: 1, scale: 1 }}
+            transition={{ duration: 0.45, ease: "easeOut", delay: 0.1 }}
+          >
+            <div className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-xl mb-2">Equity curve</CardTitle>
+                  <div className="flex text-sm text-muted-foreground">
+                    Live since {equityCurve[0]?.date || "2015-05-25"} •{" "}
+                    <button
+                      onClick={handleReset}
+                      className="flex items-center align-center gap-1 text-emerald-600 hover:underline cursor-pointer"
+                    >
+                      <RotateCcw className="h-2 w-2 ml-1 mt-1.5" />
+                      <span>Reset</span>
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="flex gap-4 items-center">
-                <div className="flex flex-col">
-                  <label className="text-xs text-muted-foreground mb-1">
-                    From date
-                  </label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-[200px] justify-start text-left font-normal text-sm h-9 cursor-pointer",
-                          !fromDate && "text-muted-foreground"
-                        )}
-                      >
-                        {fromDate ? (
-                          format(fromDate, "yyyy-MM-dd")
-                        ) : (
-                          <span>Pick a date</span>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={fromDate}
-                        onSelect={setFromDate}
-                        disabled={(date) => {
-                          const minDate = new Date(
-                            equityCurve[0]?.date || "2015-05-25"
-                          );
-                          const maxDate =
-                            toDate ||
-                            new Date(
+                <div className="flex gap-4 items-center">
+                  <div className="flex flex-col">
+                    <label className="text-xs text-muted-foreground mb-1">
+                      From date
+                    </label>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "w-[200px] justify-start text-left font-normal text-sm h-9 cursor-pointer",
+                            !fromDate && "text-muted-foreground"
+                          )}
+                        >
+                          {fromDate ? (
+                            format(fromDate, "yyyy-MM-dd")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={fromDate}
+                          onSelect={setFromDate}
+                          disabled={(date) => {
+                            const minDate = new Date(
+                              equityCurve[0]?.date || "2015-05-25"
+                            );
+                            const maxDate =
+                              toDate ||
+                              new Date(
+                                equityCurve[equityCurve.length - 1]?.date ||
+                                  "2024-04-24"
+                              );
+                            return date < minDate || date > maxDate;
+                          }}
+                          initialFocus
+                          className={cn(
+                            "p-3 pointer-events-auto cursor-pointer"
+                          )}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="text-xs text-muted-foreground mb-1">
+                      To date
+                    </label>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "w-[200px] justify-start text-left font-normal text-sm h-9 cursor-pointer",
+                            !toDate && "text-muted-foreground"
+                          )}
+                        >
+                          {toDate ? (
+                            format(toDate, "yyyy-MM-dd")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={toDate}
+                          onSelect={setToDate}
+                          disabled={(date) => {
+                            const minDate =
+                              fromDate ||
+                              new Date(equityCurve[0]?.date || "2015-05-25");
+                            const maxDate = new Date(
                               equityCurve[equityCurve.length - 1]?.date ||
                                 "2024-04-24"
                             );
-                          return date < minDate || date > maxDate;
-                        }}
-                        initialFocus
-                        className={cn(
-                          "p-3 pointer-events-auto cursor-pointer"
-                        )}
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-                <div className="flex flex-col">
-                  <label className="text-xs text-muted-foreground mb-1">
-                    To date
-                  </label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-[200px] justify-start text-left font-normal text-sm h-9 cursor-pointer",
-                          !toDate && "text-muted-foreground"
-                        )}
-                      >
-                        {toDate ? (
-                          format(toDate, "yyyy-MM-dd")
-                        ) : (
-                          <span>Pick a date</span>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={toDate}
-                        onSelect={setToDate}
-                        disabled={(date) => {
-                          const minDate =
-                            fromDate ||
-                            new Date(equityCurve[0]?.date || "2015-05-25");
-                          const maxDate = new Date(
-                            equityCurve[equityCurve.length - 1]?.date ||
-                              "2024-04-24"
-                          );
-                          return date < minDate || date > maxDate;
-                        }}
-                        initialFocus
-                        className={cn(
-                          "p-3 cursor-pointer pointer-events-auto"
-                        )}
-                      />
-                    </PopoverContent>
-                  </Popover>
+                            return date < minDate || date > maxDate;
+                          }}
+                          initialFocus
+                          className={cn(
+                            "p-3 cursor-pointer pointer-events-auto"
+                          )}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* --- Equity Curve Chart --- */}
-          <CardContent>
-            <ResponsiveContainer width="100%" height={400}>
-              <ComposedChart data={filteredEquityCurve}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis
-                  dataKey="date"
-                  tick={{ fontSize: 12 }}
-                  tickFormatter={(value) => {
-                    const date = new Date(value);
-                    return date.getFullYear().toString();
-                  }}
-                />
-                <YAxis yAxisId="left" tick={{ fontSize: 12 }} domain={[0, 350]} />
-                <YAxis
-                  yAxisId="right"
-                  orientation="right"
-                  tick={{ fontSize: 12 }}
-                  domain={[-50, 10]}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "white",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: "6px",
-                    fontSize: "12px",
-                  }}
-                  formatter={(value: number, name: string) => {
-                    if (name === "Portfolio") return [value.toFixed(2), "Focused"];
-                    if (name === "Benchmark") return [value.toFixed(2), "NIFTY50"];
-                    if (name === "Drawdown") return [value.toFixed(2) + "%", "Drawdown"];
-                    return [value, name];
-                  }}
-                />
-                <Legend
-                  wrapperStyle={{ fontSize: "14px" }}
-                  formatter={(value) => {
-                    if (value === "portfolio") return "Focused";
-                    if (value === "benchmark") return "NIFTY50";
-                    if (value === "drawdown") return "Drawdown";
-                    return value;
-                  }}
-                />
-                <Line
-                  yAxisId="left"
-                  type="monotone"
-                  dataKey="portfolio"
-                  stroke="#10b981"
-                  strokeWidth={2}
-                  dot={false}
-                  name="Portfolio"
-                />
-                <Line
-                  yAxisId="left"
-                  type="monotone"
-                  dataKey="benchmark"
-                  stroke="#3b82f6"
-                  strokeWidth={2}
-                  dot={false}
-                  name="Benchmark"
-                />
-                <Area
-                  yAxisId="right"
-                  type="monotone"
-                  dataKey="drawdown"
-                  fill="#fecaca"
-                  stroke="#ef4444"
-                  strokeWidth={1}
-                  name="Drawdown"
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </CardContent>
+          {/* --- Equity Curve Chart (from right) --- */}
+          <motion.div
+            initial={{ x: 40, opacity: 0, scale: 0.98 }}
+            animate={{ x: 0, opacity: 1, scale: 1 }}
+            transition={{ duration: 0.45, ease: "easeOut", delay: 0.2 }}
+          >
+            <CardContent>
+              <ResponsiveContainer width="100%" height={400}>
+                <ComposedChart data={filteredEquityCurve}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis
+                    dataKey="date"
+                    tick={{ fontSize: 12 }}
+                    tickFormatter={(value) => {
+                      const date = new Date(value);
+                      return date.getFullYear().toString();
+                    }}
+                  />
+                  <YAxis
+                    yAxisId="left"
+                    tick={{ fontSize: 12 }}
+                    domain={[0, 350]}
+                  />
+                  <YAxis
+                    yAxisId="right"
+                    orientation="right"
+                    tick={{ fontSize: 12 }}
+                    domain={[-50, 10]}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "white",
+                      border: "1px solid #e5e7eb",
+                      borderRadius: "6px",
+                      fontSize: "12px",
+                    }}
+                    formatter={(value: number, name: string) => {
+                      if (name === "Portfolio")
+                        return [value.toFixed(2), "Focused"];
+                      if (name === "Benchmark")
+                        return [value.toFixed(2), "NIFTY50"];
+                      if (name === "Drawdown")
+                        return [value.toFixed(2) + "%", "Drawdown"];
+                      return [value, name];
+                    }}
+                  />
+                  <Legend
+                    wrapperStyle={{ fontSize: "14px" }}
+                    formatter={(value) => {
+                      if (value === "portfolio") return "Focused";
+                      if (value === "benchmark") return "NIFTY50";
+                      if (value === "drawdown") return "Drawdown";
+                      return value;
+                    }}
+                  />
+                  <Line
+                    yAxisId="left"
+                    type="monotone"
+                    dataKey="portfolio"
+                    stroke="#10b981"
+                    strokeWidth={2}
+                    dot={false}
+                    name="Portfolio"
+                  />
+                  <Line
+                    yAxisId="left"
+                    type="monotone"
+                    dataKey="benchmark"
+                    stroke="#3b82f6"
+                    strokeWidth={2}
+                    dot={false}
+                    name="Benchmark"
+                  />
+                  <Area
+                    yAxisId="right"
+                    type="monotone"
+                    dataKey="drawdown"
+                    fill="#fecaca"
+                    stroke="#ef4444"
+                    strokeWidth={1}
+                    name="Drawdown"
+                  />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </motion.div>
         </Card>
       </div>
     </div>
@@ -326,4 +353,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
