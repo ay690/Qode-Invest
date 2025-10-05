@@ -1,4 +1,13 @@
-import { Home, TrendingUp, FlaskConical, Archive, UserPlus, Gift, User, ChevronDown } from "lucide-react";
+import {
+  Home,
+  TrendingUp,
+  FlaskConical,
+  Archive,
+  UserPlus,
+  Gift,
+  User,
+  ChevronDown,
+} from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
   Sidebar,
@@ -26,17 +35,10 @@ const items = [
 export function AppSidebar() {
   const { open } = useSidebar();
 
-  // shared item animation; direction depends on index (even -> from left, odd -> from right)
-  const itemVariants = (index: number) => ({
-    hidden: { x: index % 2 === 0 ? -28 : 28, opacity: 0, scale: 0.98 },
-    visible: { x: 0, opacity: 1, scale: 1 },
-    exit: { x: index % 2 === 0 ? -20 : 20, opacity: 0, scale: 0.98 },
-  });
-
   return (
     <Sidebar collapsible="icon" className="border-r">
       <SidebarContent>
-        {/* Logo + Branding (animated) */}
+        {/* Logo + Branding */}
         <motion.div
           initial={{ x: -16, opacity: 0 }}
           animate={open ? { x: 0, opacity: 1 } : { x: -8, opacity: 0.8 }}
@@ -62,7 +64,9 @@ export function AppSidebar() {
                   className="flex flex-col"
                 >
                   <span className="text-sm font-semibold">capitalmind</span>
-                  <span className="text-xs text-emerald-600 font-bold">premium</span>
+                  <span className="text-xs text-emerald-600 font-bold">
+                    premium
+                  </span>
                 </motion.div>
               )}
             </div>
@@ -73,40 +77,56 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items?.map((item, index) => (
+              {items.map((item, index) => (
                 <SidebarMenuItem key={item.title}>
-                  <motion.div
-                    initial="hidden"
-                    animate={open ? "visible" : "hidden"}
-                    exit="exit"
-                    variants={itemVariants(index)}
-                    transition={{
-                      duration: 0.42,
-                      ease: "easeOut",
-                      delay: 0.06 * index,
-                    }}
-                    className="w-full"
-                  >
-                    {item.url === "#" ? (
-                      <SidebarMenuButton className="flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-                        <item.icon className="h-4 w-4" />
-                        {open && <span>{item.title}</span>}
-                      </SidebarMenuButton>
-                    ) : (
-                      <NavLink
-                        to={item.url}
-                        end
-                        className={({ isActive }) =>
-                          `flex items-center gap-2 px-2 py-2 rounded-md transition-colors 
-                           hover:bg-sidebar-accent hover:text-sidebar-accent-foreground 
-                           ${isActive ? "bg-sidebar-accent text-sidebar-accent-foreground" : ""}`
-                        }
-                      >
-                        <item.icon className="h-4 w-4" />
-                        {open && <span>{item.title}</span>}
-                      </NavLink>
-                    )}
-                  </motion.div>
+                  {item.url === "#" ? (
+                    <SidebarMenuButton className="flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+                      <item.icon className="h-4 w-4" />
+
+                      {open && (
+                        <motion.span
+                          initial={{
+                            x: index % 2 === 0 ? -16 : 16,
+                            opacity: 0,
+                          }}
+                          animate={{ x: 0, opacity: 1 }}
+                          exit={{ x: index % 2 === 0 ? -12 : 12, opacity: 0 }}
+                          transition={{ duration: 0.35, delay: 0.05 * index }}
+                        >
+                          {item.title}
+                        </motion.span>
+                      )}
+                    </SidebarMenuButton>
+                  ) : (
+                    <NavLink
+                      to={item.url}
+                      end
+                      className={({ isActive }) =>
+                        `flex items-center gap-2 px-2 py-2 rounded-md transition-colors 
+                         hover:bg-sidebar-accent hover:text-sidebar-accent-foreground 
+                         ${
+                           isActive
+                             ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                             : ""
+                         }`
+                      }
+                    >
+                      <item.icon className="h-4 w-4" />
+                      {open && (
+                        <motion.span
+                          initial={{
+                            x: index % 2 === 0 ? -16 : 16,
+                            opacity: 0,
+                          }}
+                          animate={{ x: 0, opacity: 1 }}
+                          exit={{ x: index % 2 === 0 ? -12 : 12, opacity: 0 }}
+                          transition={{ duration: 0.35, delay: 0.05 * index }}
+                        >
+                          {item.title}
+                        </motion.span>
+                      )}
+                    </NavLink>
+                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
@@ -137,7 +157,9 @@ export function AppSidebar() {
               className="flex flex-col items-end"
             >
               <span className="text-sm font-semibold">CMPY1</span>
-              <span className="text-xs text-muted-foreground">Valid till 25th April, 2025</span>
+              <span className="text-xs text-muted-foreground">
+                Valid till 25th April, 2025
+              </span>
             </motion.div>
           )}
         </motion.div>
