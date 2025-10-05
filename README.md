@@ -1,7 +1,5 @@
 # Qode Invest - Investment Portfolio Tracker
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 Qode Invest is a modern, responsive web application built with React, TypeScript, and Vite, designed to help users track and manage their investment portfolios with ease.
 
 ## 🚀 Features
@@ -46,8 +44,8 @@ Qode Invest is a modern, responsive web application built with React, TypeScript
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/qode-invest.git
-   cd qode-invest
+   git clone https://github.com/ay690/Qode-Invest.git
+   cd Qode-Invest
    ```
 
 2. Install dependencies:
@@ -55,7 +53,7 @@ Qode Invest is a modern, responsive web application built with React, TypeScript
    ```bash
    npm install
    # or
-   yarn
+   yarn install
    ```
 
 3. Start the development server:
@@ -90,10 +88,6 @@ src/
 - `npm run build` - Build the application for production
 - `npm run preview` - Preview the production build locally
 - `npm run lint` - Run ESLint
-
-## 🎨 Theming
-
-The application supports both light and dark themes, automatically adapting to the user's system preferences. You can also manually toggle between themes.
 
 ## 📄 License
 
